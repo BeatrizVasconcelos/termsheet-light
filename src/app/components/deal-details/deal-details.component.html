@@ -1,0 +1,30 @@
+<div class="deal-details-container" *ngIf="deal">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ deal.name }} Details</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+
+    <mat-card-content>
+      <div><span class="deal-info">Name:</span> {{ deal.name }}</div>
+      <div><span class="deal-info">Type:</span> {{ deal.type }}</div>
+      <div>
+        <span class="deal-info">Purchase Price:</span>
+        {{ deal.purchasePrice | currency }}
+      </div>
+      <div><span class="deal-info">Address:</span> {{ deal.address }}</div>
+      <div><span class="deal-info">NOI:</span> {{ deal.noi | currency }}</div>
+      <div><span class="deal-info">Cap Rate:</span> {{ deal.capRate }}%</div>
+
+      <div class="image">
+        <img src="../../../assets/images/details.svg" />
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-flat-button class="details-actions" (click)="goBack()">
+        BACK
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

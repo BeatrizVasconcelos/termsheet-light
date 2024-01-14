@@ -1,0 +1,31 @@
+@import '../../../styles/variables';
+
+.home-container {
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .image {
+        margin: 0 auto;
+        @media(max-width: 600px) {
+            display: flex;
+            width: 70%;
+         }
+    }
+
+    .welcome-title {
+        margin: 20px auto;
+        color: $primary-color;
+        
+        @media(max-width: 600px) {
+            display: flex;
+            font-size: 18px;
+         }
+    }
+
+    .welcome-btn {
+        margin: 20px auto;
+        width: 50%;
+    }
+}

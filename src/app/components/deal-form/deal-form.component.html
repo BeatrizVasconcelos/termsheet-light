@@ -1,0 +1,82 @@
+<div class="deal-form-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Add Deals</mat-card-title>
+      <mat-card-subtitle
+        >Fill out with the needed information to add new
+        deals</mat-card-subtitle
+      >
+    </mat-card-header>
+
+    <mat-card-content>
+      <form class="deal-form" [formGroup]="dealForm">
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input
+            formControlName="name"
+            type="text"
+            matInput
+            placeholder="Ex. Plaza Acquisition"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Type</mat-label>
+          <mat-select formControlName="type">
+            <mat-option *ngFor="let type of dealTypes" [value]="type">
+              {{ type }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Purchase Price</mat-label>
+          <input
+            formControlName="purchasePrice"
+            type="text"
+            prefix="$"
+            mask="separator.2"
+            thousandSeparator=","
+            [dropSpecialCharacters]="true"
+            matInput
+            placeholder="Ex. $450000"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Address</mat-label>
+          <input
+            type="text"
+            formControlName="address"
+            matInput
+            placeholder="Ex. 456 Elm St"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>NOI (Net Operating Income)</mat-label>
+          <input
+            formControlName="noi"
+            prefix="$"
+            mask="separator.2"
+            thousandSeparator=","
+            [dropSpecialCharacters]="true"
+            matInput
+            placeholder="Ex. $450000"
+          />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-flat-button class="continue-button" (click)="addNewDeal()">
+        SAVE
+      </button>
+      <button mat-flat-button (click)="goBack()">BACK</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <div class="loader" *ngIf="isLoading$ | async as isLoading">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>

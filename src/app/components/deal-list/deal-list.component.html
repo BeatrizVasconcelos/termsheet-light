@@ -1,0 +1,117 @@
+<div class="deals-main-container">
+  <div class="deals-list-container" *ngIf="deals$ | async as deals">
+    <div class="filter-container">
+      <mat-form-field class="filter-field" appearance="outline">
+        <input
+          matInput
+          [formControl]="filterNameControl"
+          placeholder="Filter by Name"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="filter-field" appearance="outline">
+        <mat-select
+          [formControl]="filterTypeControl"
+          placeholder="Filter by Type"
+        >
+          <mat-option value="">All Types</mat-option>
+          <mat-option value="Acquisition">Acquisition</mat-option>
+          <mat-option value="Development">Development</mat-option>
+          <mat-option value="Lease">Lease</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="filter-field" appearance="outline">
+        <input
+          matInput
+          [formControl]="filterCapRateControl"
+          placeholder="Filter by Cap Rate"
+        />
+      </mat-form-field>
+    </div>
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-table mat-elevation-z8"
+      *ngIf="deals.length > 0"
+    >
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="purchasePrice">
+        <th mat-header-cell *matHeaderCellDef>Purchase Price</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.purchasePrice | currency }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef>Address</th>
+        <td mat-cell *matCellDef="let element">{{ element.address }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="noi">
+        <th mat-header-cell *matHeaderCellDef>NOI</th>
+        <td mat-cell *matCellDef="let element">{{ element.noi | currency }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="capRate">
+        <th mat-header-cell *matHeaderCellDef>Cap Rate</th>
+        <td mat-cell *matCellDef="let element">{{ element.capRate }}%</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            class="actions-button"
+            (click)="goToDealDetailsPage(element.id)"
+          >
+            <mat-icon>visibility</mat-icon>
+          </button>
+
+          <button
+            mat-icon-button
+            class="actions-button"
+            (click)="goToEditPage(element.id)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button
+            mat-icon-button
+            class="actions-button"
+            (click)="deleteDeal(element.id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <div class="deal-buttons">
+    <button mat-stroked-button class="btn-back" (click)="goToHomePage()">
+      BACK
+    </button>
+
+    <button mat-stroked-button class="btn" (click)="goToAddDealPage()">
+      ADD NEW DEAL
+    </button>
+  </div>
+
+  <div *ngIf="isLoading$ | async as isLoadng">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+@import "../../../styles/variables";
+
+.deals-main-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  .deals-list-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    margin: 10px auto;
+
+    .filter-container {
+      display: flex;
+      flex-direction: row;
+      mat-form-field {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .actions-button {
+    color: $primary-color;
+  }
+
+  .deal-buttons {
+    margin: 40px auto;
+    .btn {
+      color: $primary-color;
+      margin-left: 10px;
+    }
+  }
+}
+
+::ng-deep .mdc-text-field--focused .mdc-notched-outline > * {
+  border-color: $primary-color !important;
+}
