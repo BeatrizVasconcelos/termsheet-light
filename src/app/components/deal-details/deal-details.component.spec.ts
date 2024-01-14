@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DealDetailsComponent } from './deal-details.component';
+import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { MockStore } from '@ngrx/store/testing';
 
 describe('DealDetailsComponent', () => {
   let component: DealDetailsComponent;
@@ -8,7 +11,22 @@ describe('DealDetailsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DealDetailsComponent]
+      declarations: [DealDetailsComponent],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              paramMap: {
+                get: (param: string) => {}
+              }
+            }
+          }
+        },
+        {
+          provide: Store, useValue: MockStore
+        }
+      ],
     });
     fixture = TestBed.createComponent(DealDetailsComponent);
     component = fixture.componentInstance;

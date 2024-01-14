@@ -35,6 +35,6 @@ export class DealDetailsComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('/list-deals');
   }
 }
